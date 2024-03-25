@@ -23,7 +23,7 @@ public class Deque<Item> implements Iterable<Item> {
         this.size = 0;
     }
 
-    public boolean isempty() {
+    public boolean isEmpty() {
         return (this.head == null);
     }
 
@@ -42,7 +42,7 @@ public class Deque<Item> implements Iterable<Item> {
 
         size++;
         
-        if (isempty()) {
+        if (isEmpty()) {
             // this is the first element added
             tail = head;
             return;
@@ -65,7 +65,7 @@ public class Deque<Item> implements Iterable<Item> {
         // increment size;
         size ++;
 
-        if (isempty()) {
+        if (isEmpty()) {
             //first element to be added;
             head = tail;
             return;
@@ -78,7 +78,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public Item removeFirst() {
-        if (isempty())
+        if (isEmpty())
             throw new NoSuchElementException("Cannot remove from empty deque");
 
         Item item = head.item;
@@ -90,7 +90,7 @@ public class Deque<Item> implements Iterable<Item> {
 
 
     public Item removeLast() {
-        if (isempty())
+        if (isEmpty())
             throw new NoSuchElementException("Cannot remove from empty deque");
 
         Item item = tail.item;
@@ -133,7 +133,7 @@ public class Deque<Item> implements Iterable<Item> {
         // Create a new empty Deque
         Deque<Integer> d1 = new Deque<Integer>();
 
-        StdOut.println("Is d1 empty?" + d1.isempty());
+        StdOut.println("Is d1 empty?" + d1.isEmpty());
 
         d1.addLast(4);
         d1.addLast(5);
@@ -141,7 +141,7 @@ public class Deque<Item> implements Iterable<Item> {
         d1.addLast(7);
 
         StdOut.println("Added 4, 5, 6, 7 to Last");
-        StdOut.println("Is d1 empty?" + d1.isempty());
+        StdOut.println("Is d1 empty?" + d1.isEmpty());
         
         for (int item : d1) {
             StdOut.println("Item=" + item);
