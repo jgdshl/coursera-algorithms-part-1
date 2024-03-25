@@ -2,7 +2,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdPicture;
 
 public class Deque<Item> implements Iterable<Item> {
 
@@ -23,7 +22,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public boolean isEmpty() {
-        return (this.head == null);
+        return (size == 0);
     }
 
     public int size() {
@@ -39,17 +38,17 @@ public class Deque<Item> implements Iterable<Item> {
         head = new Node();
         head.item = item;
 
-        size++;
-        
         if (isEmpty()) {
             // this is the first element added
             tail = head;
+            size++;
             return;
         }
 
         // Not the first element. Join old elements
         head.next = oldHead;
         oldHead.prev = head;
+        size++;
     }
 
     public void addLast(Item item) {
@@ -59,21 +58,19 @@ public class Deque<Item> implements Iterable<Item> {
         Node oldTail = tail;
         
         tail = new Node();
-        tail.item = item;
-
-        // increment size;
-        size++;
+        tail.item = item;        
 
         if (isEmpty()) {
             // first element to be added;
             head = tail;
+            size++;
             return;
         }
 
         // Not the first element. Join old elements
         tail.prev = oldTail;
         oldTail.next = tail;
-        
+        size++;
     }
 
     public Item removeFirst() {
@@ -131,6 +128,7 @@ public class Deque<Item> implements Iterable<Item> {
         
         // Create a new empty Deque
         Deque<Integer> d1 = new Deque<Integer>();
+        d1.addFirst(1);
 
         StdOut.println("Is d1 empty?" + d1.isEmpty());
 
