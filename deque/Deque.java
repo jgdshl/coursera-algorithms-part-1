@@ -1,5 +1,4 @@
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.StdOut;
@@ -63,10 +62,10 @@ public class Deque<Item> implements Iterable<Item> {
         tail.item = item;
 
         // increment size;
-        size ++;
+        size++;
 
         if (isEmpty()) {
-            //first element to be added;
+            // first element to be added;
             head = tail;
             return;
         }

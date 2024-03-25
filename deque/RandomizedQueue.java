@@ -1,15 +1,13 @@
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
-@SuppressWarnings("unchecked")
 public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private Item[] arr;
-    private int N = 0;
+    private int size = 0;
 
     public RandomizedQueue()
     {
@@ -17,21 +15,21 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     public int size() {
-        return N;
+        return size;
     }
 
     public boolean isEmpty() {
-        return N == 0;
+        return size == 0;
     }
 
     public void enqueue(Item item) {
         if (item == null)
             throw new IllegalArgumentException("Cannot enqueue null");
 
-        if (N == arr.length)
+        if (size == arr.length)
             resize(2 * arr.length);
 
-        arr[N++] = item;
+        arr[size++] = item;
     }
 
     public Item dequeue() {
@@ -40,7 +38,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
         // sample a random element and return.
         // pop from end, and replace at sampled index.
-        int index = StdRandom.uniformInt(N);
+        int index = StdRandom.uniformInt(size);
         Item item = getItemAt(index);
 
         Item replacingItem = pop();
@@ -54,31 +52,31 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
             throw new NoSuchElementException("Cannot sample an empty bag");
         
         // sample a random element and return.
-        int index = StdRandom.uniformInt(N);
+        int index = StdRandom.uniformInt(size);
         Item item = getItemAt(index);
 
         return item;
     }
 
     private Item pop() {
-        Item item = arr[--N];
-        arr[N] = null;
+        Item item = arr[--size];
+        arr[size] = null;
 
-        if (N > 0 && N == arr.length / 4)
+        if (size > 0 && size == arr.length / 4)
             resize(arr.length / 2);
 
         return item;
     }
 
     private Item getItemAt(int index) {
-        if (index < 0 || index > N)
+        if (index < 0 || index > size)
             throw new IllegalArgumentException("Index out of bounds");
 
         return arr[index];
     }
 
     private void setAt(Item item, int index) {
-        if (index < 0 || index > N)
+        if (index < 0 || index > size)
             throw new IllegalArgumentException("Index out of bounds");
 
         arr[index] = item;
@@ -86,7 +84,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < size; i++) {
             copy[i] = arr[i];
         }
         arr = copy;
