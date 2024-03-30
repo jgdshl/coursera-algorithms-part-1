@@ -128,7 +128,10 @@ public class Deque<Item> implements Iterable<Item> {
         
         // Create a new empty Deque
         Deque<Integer> d1 = new Deque<Integer>();
-        d1.addFirst(1);
+        d1.isEmpty();
+        d1.isEmpty();
+        d1.addFirst(3);
+        d1.addLast(1);
 
         StdOut.println("Is d1 empty?" + d1.isEmpty());
 
